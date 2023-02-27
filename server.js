@@ -3,11 +3,11 @@
 const PORT = 8000
 const axios = require('axios').default
 const express = require('express')
-//const cors = require('cors')
+const cors = require('cors')
 require('dotenv').config()
 
 const app = express()
-//app.use(cors())
+app.use(cors())
 
 //We want to create our route so that we can make requests here and not share our keys when we publish om github
 //This was on the front end we juis male an axios get call to the /languages url and we will get the list of languages
@@ -51,8 +51,8 @@ app.get('/translate', (req, res) => {
         headers: {
             'content-type': 'application/x-www-form-urlencoded',
             'Accept-Encoding': 'application/gzip',
-            'X-RapidAPI-Key': 'ecd42335camsh84fbad77c4113bap15b5dfjsnfb70657ddf89',
-            'X-RapidAPI-Host': 'google-translate1.p.rapidapi.com'
+            'X-RapidAPI-Key': process.env.RAPID_API_KEY,
+            'X-RapidAPI-Host': process.env.RAPID_API_HOST
         },
         data: encodedParams
     };
